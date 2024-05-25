@@ -4,7 +4,7 @@ This readme file can be used to understand how to run the scripts involved
 ## create virtual environment
 The first step is to create a virtual environment
 
-`python -m venv {name of your venv}
+`python -m venv {name of your venv}\n
 source {name of your venv}/bin/activate`
 
 ## install requirements file
