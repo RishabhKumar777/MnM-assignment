@@ -2,6 +2,10 @@ import argparse
 from data_extraction import PostDataExtractor
 from data_transformation import DataTransformer
 from data_loader import DataLoader
+import structlog
+
+# Define logger
+logger = structlog.get_logger()
 
 
 def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
@@ -14,14 +18,18 @@ def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
     :return:
     """
     # Step 1: Extract data
+    logger.info('Extracting process')
     extractor = PostDataExtractor(base_url, posts_endpoint)
     extracted_data = extractor.extract_data()
 
     # Step 2: Transform data
+    logger.info('Transforming process')
     transformer = DataTransformer(extracted_data, min_title_length=min_title_length)
     transformed_data = transformer.transform_data()
 
     # Step 3: Load data
+    print(transformed_data)
+    logger.info('Loading process')
     loader = DataLoader(db_path, transformed_data)
     loader.load_data()
 

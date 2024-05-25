@@ -25,6 +25,8 @@ class DataLoader:
         logger.info('Loading data')
         with engine.connect() as connection:
             for index, row in self.data.iterrows():
+                print('bappa1')
+                print(row['title'])
                 insert_query = posts.insert().values(
                     id=row['id'],
                     title=row['title'],
@@ -42,5 +44,6 @@ class DataLoader:
                         title_length=row['title_length']
                     ).where(posts.c.id == row['id'])
                     connection.execute(update_query)
-        logger.info('Everything uploaded. Closing connection now. Have a nice day! :)')
+            logger.info('Everything uploaded. Closing connection now. Have a nice day! :)')
+            connection.commit()
         conn.close()
