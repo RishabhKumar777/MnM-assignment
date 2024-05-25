@@ -1,2 +1,2 @@
 # methods-mastery-assignment
-Assignment for methods mastery
+This readme file can be used to understand how to run the scripts involved
