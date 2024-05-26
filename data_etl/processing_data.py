@@ -20,7 +20,7 @@ def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
     # Step 1: Extract data
     logger.info('Extracting process')
     extractor = PostDataExtractor(base_url, posts_endpoint)
-    extracted_data = extractor.extract_data()
+    extracted_data, input_count = extractor.extract_data()
 
     # Step 2: Transform data
     logger.info('Transforming process')
@@ -31,7 +31,10 @@ def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
     print(transformed_data)
     logger.info('Loading process')
     loader = DataLoader(db_path, transformed_data)
-    loader.load_data()
+    new_data_points, old_data_points = loader.load_data()
+    logger.info('Total data points extracted', points=input_count)
+    logger.info('New data points', new_points=new_data_points)
+    logger.info('Old data points', new_points=old_data_points)
 
 
 if __name__ == "__main__":

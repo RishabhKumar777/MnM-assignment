@@ -35,10 +35,12 @@ class PostDataExtractor:
                 posts_data = response.json()
                 logger.info('Extraction complete')
                 data = pd.DataFrame(posts_data)
-                return data
+                count = len(data)
+                logger.info(f'Successfully extracted {count} data points from API')
+                return data, count
             else:
                 logger.info("Error:", response.status_code)
-                return None
+                return None, None
         except Exception:
             logger.error("Error during request:", exc_info=True)
-            return None
+            return None, None

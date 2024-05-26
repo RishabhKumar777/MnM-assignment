@@ -19,6 +19,8 @@ class DataLoader:
         conn = sqlite3.connect(self.db_path)
         logger.info('Creating a SQL engine')
         engine = create_engine('sqlite:///' + self.db_path, echo=True)
+        new_data_points = 0
+        old_data_points = 0
         # metadata is the schema required for the table
         # Create or connect to the database and table
         metadata.create_all(engine)
@@ -33,6 +35,7 @@ class DataLoader:
                 )
                 try:
                     connection.execute(insert_query)
+                    new_data_points += 1
                 except IntegrityError:
                     logger.info('{} already exists'.format(row['title']))
                     # Upsert functionality being added here
@@ -42,6 +45,8 @@ class DataLoader:
                         title_length=row['title_length']
                     ).where(posts.c.id == row['id'])
                     connection.execute(update_query)
+                    old_data_points += 1
             logger.info('Everything uploaded. Closing connection now. Have a nice day! :)')
             connection.commit()
         conn.close()
+        return new_data_points, old_data_points
