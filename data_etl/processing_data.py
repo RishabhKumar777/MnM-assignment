@@ -49,7 +49,7 @@ if __name__ == "__main__":
                         help='Minimum title length for data transformation',
                         default=5)
     parser.add_argument('--db-path',
-                        type=str, help='Path to SQLite database for data loading',
+                        type=str, help='Path to SQLite database for data loading. Ideally this should be s3 path',
                         default='posts.db')
     args = parser.parse_args()
     main(base_url=args.base_url,
