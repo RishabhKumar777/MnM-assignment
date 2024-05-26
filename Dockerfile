@@ -11,4 +11,4 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run the application when the container launches
-CMD ["python", "-m", "data_etl.processing_data"]
+CMD ["python", "data_etl/processing_data.py"]

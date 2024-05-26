@@ -17,7 +17,7 @@ class DataLoader:
         # Connect to the SQLite database
         logger.info('Connecting to database')
         conn = sqlite3.connect(self.db_path)
-        logger.info('Creating a SQL engine using sqlite')
+        logger.info('Creating a SQL engine')
         engine = create_engine('sqlite:///' + self.db_path, echo=True)
         # metadata is the schema required for the table
         # Create or connect to the database and table
@@ -25,8 +25,6 @@ class DataLoader:
         logger.info('Loading data')
         with engine.connect() as connection:
             for index, row in self.data.iterrows():
-                print('bappa1')
-                print(row['title'])
                 insert_query = posts.insert().values(
                     id=row['id'],
                     title=row['title'],
