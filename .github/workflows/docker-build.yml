@@ -22,4 +22,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push rishabhk777/image-name:latest
+        run: docker push rishabhk777/etl-container:latest
