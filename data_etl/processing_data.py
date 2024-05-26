@@ -34,7 +34,7 @@ def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
     new_data_points, old_data_points = loader.load_data()
     logger.info('Total data points extracted', points=input_count)
     logger.info('New data points', new_points=new_data_points)
-    logger.info('Old data points', new_points=old_data_points)
+    logger.info('Old data points', old_points=old_data_points)
 
 
 if __name__ == "__main__":
