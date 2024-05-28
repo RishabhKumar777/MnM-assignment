@@ -38,13 +38,6 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Set PYTHONPATH
-        run: echo "::set-env name=PYTHONPATH::$(echo $PYTHONPATH):."
-        shell: bash
-
-      - name: echo PYTHONPATH
-        run: echo $PYTHONPATH
-
       - name: Install dependencies
         run: pip install -r requirements.txt
 
