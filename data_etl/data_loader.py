@@ -1,8 +1,8 @@
 import sqlite3
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError
-from data_metadata import metadata, posts
 import structlog
+from sqlalchemy import MetaData, Table, Column, Integer, String
 
 # Define logger
 logger = structlog.get_logger()
@@ -23,6 +23,14 @@ class DataLoader:
         old_data_points = 0
         # metadata is the schema required for the table
         # Create or connect to the database and table
+        metadata = MetaData()
+        posts = Table(
+            'posts', metadata,
+            Column('id', Integer, primary_key=True),
+            Column('title', String),
+            Column('body', String),
+            Column('title_length', Integer)
+        )
         metadata.create_all(engine)
         logger.info('Loading data')
         with engine.connect() as connection:
