@@ -55,6 +55,6 @@ class DataLoader:
                     connection.execute(update_query)
                     old_data_points += 1
             logger.info('Everything uploaded. Closing connection now. Have a nice day! :)')
-            # connection.commit()
+            connection.commit()
         conn.close()
         return new_data_points, old_data_points
