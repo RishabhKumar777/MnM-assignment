@@ -36,7 +36,8 @@ jobs:
           python-version: 3.x
 
       - name: Set PYTHONPATH
-        run: export PYTHONPATH=$PYTHONPATH:.
+        run: echo "::set-env name=PYTHONPATH::$(echo $PYTHONPATH):."
+        shell: bash
 
       - name: echo PYTHONPATH
         run: echo $PYTHONPATH
