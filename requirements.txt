@@ -22,3 +22,4 @@ MarkupSafe
 python-dateutil
 pyarrow
 sqlalchemy
+pytest
