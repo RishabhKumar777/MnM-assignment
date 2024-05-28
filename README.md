@@ -24,7 +24,7 @@ Once you have your virtual environment in place, install all the requirements fo
 `python data_etl/processing_data.py`  
 
 ## Github Actions
-Whenever you push code of any kind, github actions will run tests as well as update the docker image to run stuff locally with the docker image. NO MANUAL INTERVENTION REQUIRED HERE TO CREATE THE DOCKER IMAGE. Benefit of this is that the docker image remains updated with your latest code pushed to your master/main branch. Code on other branches for now will have to be manually dockerized through the script below.
+Whenever you push code of any kind, github actions will run tests as well as update the docker image to run stuff locally with the docker image. NO MANUAL INTERVENTION REQUIRED HERE TO CREATE THE DOCKER IMAGE. Benefit of this is that the docker image remains updated with your latest code pushed to your master/main branch. Code on other branches for now will have to be manually dockerized by using the Dockerfile in the project.
 
 ## Run Script through Docker container
 whenever you push code, a docker image gets built with the name rishabhk777/etl-container:latest 
