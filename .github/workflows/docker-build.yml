@@ -38,6 +38,9 @@ jobs:
       - name: Set PYTHONPATH
         run: export PYTHONPATH=$PYTHONPATH:.
 
+      - name: echo PYTHONPATH
+        run: echo $PYTHONPATH
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
