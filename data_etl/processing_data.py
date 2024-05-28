@@ -17,17 +17,17 @@ def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
     :param db_path:
     :return:
     """
-    # Step 1: Extract data
+    # Step 1: Extract data from base_url and posts endpoint
     logger.info('Extracting process')
     extractor = PostDataExtractor(base_url, posts_endpoint)
     extracted_data, input_count = extractor.extract_data()
 
-    # Step 2: Transform data
+    # Step 2: Transform data with given requirements like title length filters and 'title length' column
     logger.info('Transforming process')
     transformer = DataTransformer(extracted_data, min_title_length=min_title_length)
     transformed_data = transformer.transform_data()
 
-    # Step 3: Load data
+    # Step 3: Load data onto a sql database with the upsert functionality
     print(transformed_data)
     logger.info('Loading process')
     loader = DataLoader(db_path, transformed_data)
@@ -35,6 +35,9 @@ def main(base_url: str, posts_endpoint: str, min_title_length: str, db_path):
     logger.info('Total data points extracted', points=input_count)
     logger.info('New data points', new_points=new_data_points)
     logger.info('Old data points', old_points=old_data_points)
+    errored_out_points = input_count - (old_data_points + new_data_points)
+    logger.info('Number of points not loaded due to errors. Check logs for more details',
+                error_points=errored_out_points)
 
 
 if __name__ == "__main__":
