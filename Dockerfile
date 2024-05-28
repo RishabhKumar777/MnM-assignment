@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Define a build argument for the database file
-ENV DATABASE_FILE = "./posts.db"
+ARG DATABASE_FILE="./posts.db"
 
 # Check if the database file exists at the specified location. Copy if present otherwise go ahead
 RUN if [ -f "$DATABASE_FILE" ]; then \
