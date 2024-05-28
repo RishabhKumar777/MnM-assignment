@@ -25,6 +25,9 @@ jobs:
         run: docker push rishabhk777/etl-container:latest
 
   test:
+    env:
+      PYTHONPATH: ${{ runner.workspace }}:.
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
